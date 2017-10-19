@@ -1,3 +1,6 @@
+[![Build 
+Status](https://travis-ci.org/FlugfelagidBailAir/TicTacToe.svg?branch=master)](https://travis-ci.org/FlugfelagidBailAir/TicTacToe)
+
 # TicTacToe
 Late fall semester project for HUGB3003
 
