@@ -18,7 +18,9 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
-
+task stage (dependsOn: installDist){
+	
+}
 dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
