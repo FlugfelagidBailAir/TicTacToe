@@ -1,3 +1,7 @@
 language: java
+deploy:
+  provider: heroku
+  api_key:
+    secure: "63e918b5-01b2-41a9-a412-5edc0a4df276"
 before_install:
  - chmod +x gradlew
