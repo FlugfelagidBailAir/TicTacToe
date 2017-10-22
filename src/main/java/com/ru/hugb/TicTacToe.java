@@ -1,32 +1,80 @@
 package com.ru.hugb;
 
+import java.lang.Exception;
+
 public class TicTacToe {
-	private char[][] board;
+	private boolean[][] xBoard;
+	private boolean[][] oBoard;
 
 	public TicTacToe(){
-		board = new char[3][3];
-	}
 
-	/**
-	 * Populates the board with the characters in this pattern
-	 * 1 2 3
-	 * 4 5 6
-	 * 7 8 9
-	 */
-	private void populateBoard(){
+		xBoard = new boolean[3][3];
+		oBoard = new boolean[3][3];
+
 		for (int i = 0; i < 3; i++) {
-			for (int j = 1; j <= 3; j++) {
-				board[i][j -1] = Character.forDigit(i *3 + j,10);
+
+			for (int j = 0; j < 3; j++) {
+
+				xBoard[i][j] = false;
+				oBoard[i][j] = false;
 			}
 		}
 	}
 
-	/**
-	 *
-	 */
-	public void createNewGame(){
-		populateBoard();
+	//Board getters and setters:
+
+	public boolean[][] getXboard() {
+
+		return xBoard;
 	}
+
+	public boolean getXboardPos(int i, int j) {
+
+		validateIndex(i, j);
+
+		return xBoard[i][j];
+	}
+
+	public void setXboardPos(int i, int j) {
+
+		validateIndex(i, j);
+
+		if (!getOboardPos(i, j)) {
+
+			xBoard[i][j] = true;
+		}
+	}
+
+	public boolean[][] getOboard() {
+
+		return oBoard;
+	}
+
+	public boolean getOboardPos(int i, int j) {
+
+		validateIndex(i, j);
+
+		return oBoard[i][j];
+	}
+
+	public void setOboardPos(int i, int j) {
+
+		validateIndex(i, j);
+
+		if (!getXboardPos(i, j)) {
+
+			oBoard[i][j] = true;
+		}
+	}
+
+	private void validateIndex(int i, int j) {
+
+		if (i < 0 || j < 0 || i >= 3 || j >= 3) {
+
+			throw new IndexOutOfBoundsException();
+		}
+	}
+
 
 	/**
 	 *
@@ -35,9 +83,21 @@ public class TicTacToe {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for (char[] arr : board) {
-			for (char s : arr) {
-				sb.append(String.valueOf(s)).append(' ');
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+
+				if (getXboardPos(i, j)) {
+
+					sb.append("X").append(' ');
+
+				} else if (getOboardPos(i, j)) {
+
+					sb.append("O").append(' ');
+
+				} else {
+
+					sb.append(String.valueOf((i * 3) + (j + 1))).append(' ');
+				}
 			}
 			sb.append('\n');
 		}
@@ -45,9 +105,9 @@ public class TicTacToe {
 	}
 
 	public static void main(String[] args){
-		TicTacToe game1 = new TicTacToe();
-		game1.createNewGame();
-		System.out.println(game1);
 
+		TicTacToe game = new TicTacToe();
+
+		System.out.println(game.toString());
 	}
 }
