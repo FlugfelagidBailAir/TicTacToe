@@ -35,7 +35,8 @@ public class TicTacToe {
 		return xBoard[i][j];
 	}
 
-	public void setXboardPos(int i, int j) {
+	//Put X at position (i,j), returns true if winning move
+	public boolean setXboardPos(int i, int j) {
 
 		validateIndex(i, j);
 
@@ -43,6 +44,8 @@ public class TicTacToe {
 
 			xBoard[i][j] = true;
 		}
+
+		return checkStatus('x');
 	}
 
 	public boolean[][] getOboard() {
@@ -57,7 +60,8 @@ public class TicTacToe {
 		return oBoard[i][j];
 	}
 
-	public void setOboardPos(int i, int j) {
+	//Put O at position (i,j), returns true if winning move
+	public boolean setOboardPos(int i, int j) {
 
 		validateIndex(i, j);
 
@@ -65,6 +69,8 @@ public class TicTacToe {
 
 			oBoard[i][j] = true;
 		}
+
+		return checkStatus('o');
 	}
 
 	private void validateIndex(int i, int j) {
@@ -75,6 +81,19 @@ public class TicTacToe {
 		}
 	}
 
+	private boolean checkStatus(char xo) {
+
+		if(xo == 'o') {
+
+			//do something
+
+		} else if (xo == 'x') {
+
+			//do something else
+		}
+
+		return false;
+	}
 
 	/**
 	 *
