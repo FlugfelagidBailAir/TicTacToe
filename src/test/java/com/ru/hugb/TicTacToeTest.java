@@ -67,4 +67,34 @@ public class TicTacToeTest {
 
 		game.getXboardPos(-1, 3);
 	}
+
+	@Test
+	public void testWinningMoveVerticalO() {
+
+		TicTacToe game = new TicTacToe();
+
+		assertEquals(false, game.setOboardPos(0, 0));
+		assertEquals(false, game.setOboardPos(0, 1));
+		assertEquals(true, game.setOboardPos(0, 2));
+	}
+
+	@Test
+	public void testWinningMoveAcrossX() {
+
+		TicTacToe game = new TicTacToe();
+
+		assertEquals(false, game.setXboardPos(0, 0));
+		assertEquals(false, game.setXboardPos(1, 1));
+		assertEquals(true, game.setXboardPos(2, 2));
+	}
+
+	@Test
+	public void testWinningMoveHorizontalO() {
+
+		TicTacToe game = new TicTacToe();
+
+		assertEquals(false, game.setOboardPos(0, 2));
+		assertEquals(false, game.setOboardPos(1, 2));
+		assertEquals(true, game.setOboardPos(2, 2));
+	}
 }
