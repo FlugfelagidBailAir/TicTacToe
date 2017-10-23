@@ -45,7 +45,7 @@ public class TicTacToe {
 			xBoard[i][j] = true;
 		}
 
-		return checkStatus('x');
+		return checkStatus(xBoard);
 	}
 
 	public boolean[][] getOboard() {
@@ -70,7 +70,7 @@ public class TicTacToe {
 			oBoard[i][j] = true;
 		}
 
-		return checkStatus('o');
+		return checkStatus(oBoard);
 	}
 
 	private void validateIndex(int i, int j) {
@@ -81,15 +81,30 @@ public class TicTacToe {
 		}
 	}
 
-	private boolean checkStatus(char xo) {
+	private boolean checkStatus(boolean[][] board) {
 
-		if(xo == 'o') {
+		for (int i = 0; i < 3; i++) {
 
-			//do something
+			if (board[i][0] && board[i][1] && board[i][2]) {
 
-		} else if (xo == 'x') {
+				return true;
 
-			//do something else
+			} else if (board[0][i] && board[1][i] && board[2][i]) {
+
+				return true;
+			}
+		}
+
+		if (board[1][1]) {
+
+			if (board[0][0] && board[2][2]) {
+
+				return true;
+
+			} else if (board[0][2] && board[2][0]) {
+
+				return true;
+			}
 		}
 
 		return false;
