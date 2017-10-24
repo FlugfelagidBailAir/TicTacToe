@@ -184,6 +184,7 @@ public class TicTacToe {
 			if (x) {
 
 				System.out.print("Select x pos: ");
+
 				if (!scan.hasNextInt()) {
 
 					System.out.println("Enter a valid position!");
@@ -213,6 +214,14 @@ public class TicTacToe {
 			} else {
 
 				System.out.print("Select O pos: ");
+
+				if (!scan.hasNextInt()) {
+
+					System.out.println("Enter a valid position!");
+					scan.next();
+					continue;
+				}
+				
 				int oPos = scan.nextInt();
 
 				try {
