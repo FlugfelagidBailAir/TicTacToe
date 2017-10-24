@@ -1,6 +1,7 @@
 package com.ru.hugb;
 
 import java.lang.Exception;
+import java.util.Scanner;
 
 public class TicTacToe {
 	private boolean[][] xBoard;
@@ -83,6 +84,7 @@ public class TicTacToe {
 
 	private boolean checkStatus(boolean[][] board) {
 
+		//Check vertical and horizontal
 		for (int i = 0; i < 3; i++) {
 
 			if (board[i][0] && board[i][1] && board[i][2]) {
@@ -95,6 +97,7 @@ public class TicTacToe {
 			}
 		}
 
+		//Check across
 		if (board[1][1]) {
 
 			if (board[0][0] && board[2][2]) {
@@ -108,6 +111,34 @@ public class TicTacToe {
 		}
 
 		return false;
+	}
+
+	public int[] convertPos(int pos) {
+
+		int i;
+		int j;
+
+		if (pos >= 1 && pos <= 3) {
+
+			i = 0;
+			j = pos - 1;
+
+		} else if (pos >= 4 && pos <= 6) {
+
+			i = 1;
+			j = pos - 4;
+
+		} else if (pos >= 7 && pos <= 9) {
+
+			i = 2;
+			j = pos - 7;
+
+		} else {
+
+			throw new IndexOutOfBoundsException();
+		}
+
+		return new int[]{i, j};
 	}
 
 	/**
@@ -140,8 +171,72 @@ public class TicTacToe {
 
 	public static void main(String[] args){
 
+		Scanner scan = new Scanner(System.in);
 		TicTacToe game = new TicTacToe();
+		boolean exit = false;
+		boolean x = true;
 
-		System.out.println(game.toString());
+		while (!exit) {
+
+			System.out.println(game.toString());
+			int [] posTuple;
+
+			if (x) {
+
+				System.out.print("Select x pos: ");
+				int xPos = scan.nextInt();
+
+				try {
+
+					posTuple = game.convertPos(xPos);
+						
+				} catch (IndexOutOfBoundsException e) {
+
+					System.out.println("Enter a valid position!");
+					continue;
+				}
+				
+				exit = game.setXboardPos(posTuple[0], posTuple[1]);
+
+				if (!exit) {
+
+					x = false;
+				}
+
+			} else {
+
+				System.out.print("Select O pos: ");
+				int oPos = scan.nextInt();
+
+				try {
+
+					posTuple = game.convertPos(oPos);
+						
+				} catch (IndexOutOfBoundsException e) {
+
+					System.out.println("Enter a valid position!");
+					continue;
+				}
+				
+				exit = game.setOboardPos(posTuple[0], posTuple[1]);
+
+				if (!exit) {
+
+					x = true;
+				}
+			}
+		}
+
+		System.out.println("");
+
+		if (x) {
+
+			System.out.println("Winner is X!");
+
+		} else {
+
+			System.out.println("Winner is O!");
+		}
+		
 	}
 }
