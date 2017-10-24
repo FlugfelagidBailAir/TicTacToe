@@ -11,6 +11,7 @@ apply plugin: 'java-library'
 apply plugin: 'application'
 
 mainClassName = "com.ru.hugb.TicTacToe"
+version = '1.0'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -20,6 +21,17 @@ repositories {
 }
 task stage (dependsOn: installDist){
 	
+}
+//create a single Jar with all dependencies
+task toJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'TicTacToe',
+        	'Implementation-Version': version,
+        	'Main-Class': mainClassName
+    }
+    baseName = 'TicTacToe-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 dependencies {
     // Use JUnit test framework
