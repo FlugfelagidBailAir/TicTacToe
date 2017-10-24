@@ -184,13 +184,20 @@ public class TicTacToe {
 			if (x) {
 
 				System.out.print("Select x pos: ");
+				if (!scan.hasNextInt()) {
+
+					System.out.println("Enter a valid position!");
+					scan.next();
+					continue;
+				}
+
 				int xPos = scan.nextInt();
 
 				try {
 
 					posTuple = game.convertPos(xPos);
 						
-				} catch (IndexOutOfBoundsException e) {
+				} catch (Exception e) {
 
 					System.out.println("Enter a valid position!");
 					continue;
@@ -226,7 +233,7 @@ public class TicTacToe {
 				}
 			}
 		}
-		
+
 		System.out.println(game.toString());
 
 		System.out.println("");
