@@ -226,6 +226,8 @@ public class TicTacToe {
 				}
 			}
 		}
+		
+		System.out.println(game.toString());
 
 		System.out.println("");
 
