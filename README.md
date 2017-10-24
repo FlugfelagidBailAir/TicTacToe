@@ -10,3 +10,9 @@ Late fall semester project for HUGB3003
 *Einar Þórir Árnason*
 *Goði Már Daðason*
 *Gunnþóra Mist Björnsdóttir*
+
+
+# Downloads
+
+You can download the latest release at:
+[https://github.com/FlugfelagidBailAir/TicTacToe/releases/latest](https://github.com/FlugfelagidBailAir/TicTacToe/releases/latest)
