@@ -11,7 +11,7 @@ apply plugin: 'java-library'
 apply plugin: 'application'
 
 mainClassName = "com.ru.hugb.TicTacToe"
-version = '1.0'
+version = '1.1'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
