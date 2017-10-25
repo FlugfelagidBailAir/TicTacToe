@@ -1,6 +1,9 @@
 package com.ru.hugb;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class TicTacToeTest {
@@ -70,12 +73,13 @@ public class TicTacToeTest {
 
 	@Test
 	public void testWinningMoveVerticalO() {
-
 		TicTacToe game = new TicTacToe();
+		game.setOboardPos(0, 0);
+		game.setOboardPos(0, 1);
+		assertFalse(game.checkStateO());
+		game.setOboardPos(0, 2);
+		assertTrue( game.checkStateO());
 
-		assertEquals(false, game.setOboardPos(0, 0));
-		assertEquals(false, game.setOboardPos(0, 1));
-		assertEquals(true, game.setOboardPos(0, 2));
 	}
 
 	@Test
@@ -83,9 +87,11 @@ public class TicTacToeTest {
 
 		TicTacToe game = new TicTacToe();
 
-		assertEquals(false, game.setXboardPos(0, 0));
-		assertEquals(false, game.setXboardPos(1, 1));
-		assertEquals(true, game.setXboardPos(2, 2));
+		game.setXboardPos(0, 0);
+		assertFalse(game.checkStateX());
+		game.setXboardPos(1, 1);
+		game.setXboardPos(2, 2);
+		assertTrue(game.checkStateX());
 	}
 
 	@Test
@@ -93,8 +99,10 @@ public class TicTacToeTest {
 
 		TicTacToe game = new TicTacToe();
 
-		assertEquals(false, game.setOboardPos(0, 2));
-		assertEquals(false, game.setOboardPos(1, 2));
-		assertEquals(true, game.setOboardPos(2, 2));
+		game.setOboardPos(0, 2);
+		game.setOboardPos(1, 2);
+		assertFalse(game.checkStateO());
+		game.setOboardPos(2, 2);
+		assertTrue(game.checkStateO());
 	}
 }
