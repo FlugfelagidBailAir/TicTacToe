@@ -6,11 +6,13 @@ import java.util.Scanner;
 public class TicTacToe {
     private boolean[][] xBoard;
     private boolean[][] oBoard;
+    private int moves;
 
     public TicTacToe() {
 
         xBoard = new boolean[3][3];
         oBoard = new boolean[3][3];
+        moves = 0;
 
         for (int i = 0; i < 3; i++) {
 
@@ -29,6 +31,13 @@ public class TicTacToe {
         return xBoard;
     }
 
+    public boolean getXboardPos(int pos) {
+
+    	int [] posTuple = convertPos(pos);
+
+    	return getXboardPos(posTuple[0], posTuple[1]);
+    }
+
     public boolean getXboardPos(int i, int j) {
 
         validateIndex(i, j);
@@ -36,25 +45,46 @@ public class TicTacToe {
         return xBoard[i][j];
     }
 
+	//Put X at position 1-9, returns true if succesful play    
+    public boolean setXboardPos(int pos) {
+
+    	if (moves >= 9) {
+
+    		return false;
+    	}
+
+    	int [] posTuple = convertPos(pos);
+
+    	return setXboardPos(posTuple[0], posTuple[1]);
+    }
+
     //Put X at position (i,j), returns true if succesful play
     public boolean setXboardPos(int i, int j) {
+
+    	if (moves >= 9) {
+
+    		return false;
+    	}
+
         if (validMove(i,j)) {
             xBoard[i][j] = true;
+            moves++;
             return true;
         } else {
             return false;
         }
     }
 
-    // checks if the move is valid, false at i, j in both X and O boards
-    private boolean validMove(int i, int j){
-        validateIndex(i, j);
-        return !getXboardPos(i,j) && !getOboardPos(i, j);
-    }
-
     public boolean[][] getOboard() {
 
         return oBoard;
+    }
+
+    public boolean getOboardPos(int pos) {
+
+    	int [] posTuple = convertPos(pos);
+
+    	return getOboardPos(posTuple[0], posTuple[1]);
     }
 
     public boolean getOboardPos(int i, int j) {
@@ -64,25 +94,89 @@ public class TicTacToe {
         return oBoard[i][j];
     }
 
+    //Put O at position 1-9, returns true if succesful play    
+    public boolean setOboardPos(int pos) {
+
+    	if (moves >= 9) {
+
+    		return false;
+    	}
+
+    	int [] posTuple = convertPos(pos);
+
+    	return setOboardPos(posTuple[0], posTuple[1]);
+    }
+
     //Put O at position (i,j), returns true if successful move
     public boolean setOboardPos(int i, int j) {
+
+    	if (moves >= 9) {
+
+    		return false;
+    	}
+    	
         if (validMove(i, j)) {
             oBoard[i][j] = true;
+            moves++;
             return true;
         } else {
             return false;
         }
-
     }
 
     // checks if X has won
     public boolean checkStateX() {
-        return checkStatus(xBoard);
+
+    	if (moves < 5) {
+
+    		return false;
+    	}
+
+        return checkWin(xBoard);
     }
 
     // checks if O has won
     public boolean checkStateO() {
-        return checkStatus(oBoard);
+
+    	if (moves < 5) {
+
+    		return false;
+    	}
+
+        return checkWin(oBoard);
+    }
+
+    public int numberOfMoves() {
+
+    	return moves;
+    }
+
+    public int[] convertPos(int pos) {
+
+        int i;
+        int j;
+
+        if (pos >= 1 && pos <= 3) {
+
+            i = 0;
+            j = pos - 1;
+
+        } else if (pos >= 4 && pos <= 6) {
+
+            i = 1;
+            j = pos - 4;
+
+        } else if (pos >= 7 && pos <= 9) {
+
+            i = 2;
+            j = pos - 7;
+
+        } else {
+
+            throw new IndexOutOfBoundsException();
+        }
+
+        return new int[]{i, j};
     }
 
     private void validateIndex(int i, int j) {
@@ -93,7 +187,7 @@ public class TicTacToe {
         }
     }
 
-    private boolean checkStatus(boolean[][] board) {
+    private boolean checkWin(boolean[][] board) {
 
         //Check vertical and horizontal
         for (int i = 0; i < 3; i++) {
@@ -124,32 +218,10 @@ public class TicTacToe {
         return false;
     }
 
-    public int[] convertPos(int pos) {
-
-        int i;
-        int j;
-
-        if (pos >= 1 && pos <= 3) {
-
-            i = 0;
-            j = pos - 1;
-
-        } else if (pos >= 4 && pos <= 6) {
-
-            i = 1;
-            j = pos - 4;
-
-        } else if (pos >= 7 && pos <= 9) {
-
-            i = 2;
-            j = pos - 7;
-
-        } else {
-
-            throw new IndexOutOfBoundsException();
-        }
-
-        return new int[]{i, j};
+    // checks if the move is valid, false at i, j in both X and O boards
+    private boolean validMove(int i, int j){
+        validateIndex(i, j);
+        return !getXboardPos(i,j) && !getOboardPos(i, j);
     }
 
     /**
@@ -186,11 +258,9 @@ public class TicTacToe {
         boolean exit = false;
         boolean x = true;
         boolean draw = false;
-        int moves = 0;
 
         while (!exit) {
             System.out.println(game.toString());
-            int[] posTuple;
             if (x) {
                 boolean xMove = false;
                 do {
@@ -202,23 +272,23 @@ public class TicTacToe {
                     }
                     int xPos = scan.nextInt();
                     try {
-                        posTuple = game.convertPos(xPos);
+                        xMove = game.setXboardPos(xPos);
                     } catch (Exception e) {
                         System.out.println("Enter a valid position!");
                         continue;
                     }
-                    xMove = game.setXboardPos(posTuple[0], posTuple[1]);
+                    
                     if (!xMove) {
                         System.out.println("Invalid move! Try again!");
                     } else {
-                        moves++;
                         exit = game.checkStateX();
                         if (!exit) {
                             x = false;
                         }
                     }
-                    if (!exit && moves == 9 ){
-                        draw = true;
+                    if (!exit && game.numberOfMoves() >= 9){
+
+                    	draw = true;
                         exit = true;
                     }
                 } while (!xMove);
@@ -233,16 +303,15 @@ public class TicTacToe {
                     }
                     int oPos = scan.nextInt();
                     try {
-                        posTuple = game.convertPos(oPos);
+                        oMove = game.setOboardPos(oPos);
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Enter a valid position!");
                         continue;
                     }
-                    oMove = game.setOboardPos(posTuple[0], posTuple[1]);
+                    
                     if (!oMove) {
                         System.out.println("Invalid move! Try again!");
                     } else {
-                        moves++;
                         exit = game.checkStateO();
                         if (!exit) {
                             x = true;
@@ -253,7 +322,6 @@ public class TicTacToe {
         }
 
         System.out.println(game.toString());
-
         System.out.println("");
 
         if (draw){
