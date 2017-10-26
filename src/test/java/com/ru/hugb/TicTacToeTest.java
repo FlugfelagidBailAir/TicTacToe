@@ -36,8 +36,8 @@ public class TicTacToeTest {
 
 			for (int j = 0; j < 3; j++) {
 
-				game.setXboardPos(i, j);
-				game.setOboardPos(i, j);
+				assertTrue(game.setXboardPos(i, j));
+				assertFalse(game.setOboardPos(i, j));
 
 				assertEquals(true, game.getXboardPos(i, j));
 				assertEquals(false, game.getOboardPos(i, j));
@@ -54,8 +54,8 @@ public class TicTacToeTest {
 
 			for (int j = 0; j < 3; j++) {
 
-				game.setOboardPos(i, j);
-				game.setXboardPos(i, j);
+				assertTrue(game.setOboardPos(i, j));
+				assertFalse(game.setXboardPos(i, j));
 
 				assertEquals(true, game.getOboardPos(i, j));
 				assertEquals(false, game.getXboardPos(i, j));
@@ -74,10 +74,12 @@ public class TicTacToeTest {
 	@Test
 	public void testWinningMoveVerticalO() {
 		TicTacToe game = new TicTacToe();
-		game.setOboardPos(0, 0);
-		game.setOboardPos(0, 1);
+		assertTrue(game.setOboardPos(1));
+		assertTrue(game.setXboardPos(4));
+		assertTrue(game.setOboardPos(2));
 		assertFalse(game.checkStateO());
-		game.setOboardPos(0, 2);
+		assertTrue(game.setXboardPos(6));
+		assertTrue(game.setOboardPos(3));
 		assertTrue( game.checkStateO());
 
 	}
@@ -87,10 +89,12 @@ public class TicTacToeTest {
 
 		TicTacToe game = new TicTacToe();
 
-		game.setXboardPos(0, 0);
+		assertTrue(game.setXboardPos(1));
 		assertFalse(game.checkStateX());
-		game.setXboardPos(1, 1);
-		game.setXboardPos(2, 2);
+		assertTrue(game.setOboardPos(4));
+		assertTrue(game.setXboardPos(5));
+		assertTrue(game.setOboardPos(6));
+		assertTrue(game.setXboardPos(9));
 		assertTrue(game.checkStateX());
 	}
 
@@ -99,10 +103,31 @@ public class TicTacToeTest {
 
 		TicTacToe game = new TicTacToe();
 
-		game.setOboardPos(0, 2);
-		game.setOboardPos(1, 2);
+		assertTrue(game.setOboardPos(3));
+		assertTrue(game.setXboardPos(2));
+		assertTrue(game.setOboardPos(6));
 		assertFalse(game.checkStateO());
-		game.setOboardPos(2, 2);
+		assertTrue(game.setOboardPos(1));
+		assertTrue(game.setOboardPos(9));
 		assertTrue(game.checkStateO());
+	}
+
+	@Test
+	public void testDraw() {
+
+		TicTacToe game = new TicTacToe();
+
+		assertTrue(game.setXboardPos(2));
+		assertTrue(game.setOboardPos(1));
+		assertTrue(game.setXboardPos(5));
+		assertTrue(game.setOboardPos(4));
+		assertTrue(game.setXboardPos(6));
+		assertTrue(game.setOboardPos(3));
+		assertTrue(game.setXboardPos(9));
+		assertTrue(game.setOboardPos(8));
+		assertTrue(game.setXboardPos(7));
+		assertEquals(9, game.numberOfMoves());
+		assertFalse(game.checkStateO());
+		assertFalse(game.checkStateX());
 	}
 }
