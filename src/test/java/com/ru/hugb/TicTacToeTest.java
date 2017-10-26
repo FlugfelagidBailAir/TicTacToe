@@ -126,7 +126,7 @@ public class TicTacToeTest {
 		assertTrue(game.setXboardPos(9));
 		assertTrue(game.setOboardPos(8));
 		assertTrue(game.setXboardPos(7));
-		assertEquals(9, game.numberOfMoves());
+		assertFalse(game.movesAvaliable());
 		assertFalse(game.checkStateO());
 		assertFalse(game.checkStateX());
 	}
