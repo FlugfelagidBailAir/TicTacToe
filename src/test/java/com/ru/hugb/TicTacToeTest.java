@@ -12,19 +12,18 @@ public class TicTacToeTest {
 	public void testInitialBoard() {
 
 		TicTacToe game = new TicTacToe();
-
 		boolean comp[][] = new boolean[3][3];
-		
 		for (int i = 0; i < 3; i++) {
-
 			for (int j = 0; j < 3; j++) {
-
 				comp[i][j] = false;
 			}
 		}
 
-		assertEquals(comp, game.getXboard());
-		assertEquals(comp, game.getOboard());
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				assertTrue(comp[i][j] == game.getOboardPos(i,j) && comp[i][j] == game.getOboardPos(i,j));
+			}
+		}
 	}
 
 	@Test
