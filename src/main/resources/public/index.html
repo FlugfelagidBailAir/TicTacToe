@@ -1,9 +1,75 @@
 <!DOCTYPE html>
 
 <html>
+    <head>
+        <meta charset="UTF-8">  
+        <title>TicTacToe</title>
+        <link rel="stylesheet" href ="tictactoe.css" media="screen" />
+    </head>
+    <body> 
+        <div class="center-col right" >
+            <h1>FlugfelagidBailAir</h1>
+            <img class="headerimg" src= "https://maxcdn.icons8.com/Share/icon/ultraviolet/transport//airplane_front_view1600.png" alt= "This picture probably doesn’t exist"/>
+        </div>
 
-	<form method="post" action="/">
-		<input type="number" name="Position" min="1" max ="5" />
-		<input type="submit" name="Confirm" />
-	</form>
+        <header>
+            <div id="header" class="center-col">
+                <h2 class="tictactitle">0X   Tic - Tac - Toe    X0</h2>
+            </div>
+        </header>
+        <div class="center-col">
+            <div class="boxmain">           
+                <div id="main">
+                    <form action="somePage.asp" method="post"> 
+                        <label for="PlayerOne">Player One</label>
+                        <input type="text" id="PlayerOne" name="PlayerOne" />
+                        <label for="PlayerTwo">Player Two</label>
+                        <input type="text" id="PlayerTwo" name="PlayerTwo" />
+                        <input type="button" value="Start" id="button" /> 
+                    </form>
+                    <div id ="game">
+                    </div>
+                </div>
+                <div id="scoreBoard" class="ScoreBoard">
+                    <h3>Score Board</h3>
+                    <table>
+                        <thead>
+                            <tr> 
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                            <tr> 
+                                <th scope="row" class="rownumber">1</th>      
+                                <td>John doe</td> 
+                                <td>23</td> 
+                            </tr>
+                            <tr>
+                                <th scope="row" class="rownumber">2</th>
+                                <td>John doe</td> 
+                                <td>21</td>
+                            </tr> 
+                            <tr>
+                                <th scope="row" class="rownumber">3</th>
+                                <td>John doe</td> 
+                                <td >2</td>
+                            </tr> 
+                            <tr>
+                                <th scope="row" class="rownumber">4</th>
+                                <td>John doe</td> 
+                                <td >1</td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="center-col">
+            <footer>
+                <p> Menntavegi 101 1 Reykjavik <a href = "mailto: gunnthora15@ru.is" class = "mailto"> gunnthora15@ru.is </a> Phone: 555 1234</p>
+            </footer>
+        </div>
+    </body>
 </html>
