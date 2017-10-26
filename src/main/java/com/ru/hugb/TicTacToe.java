@@ -66,13 +66,7 @@ public class TicTacToe {
     		return false;
     	}
 
-        if (validMove(i,j)) {
-            xBoard[i][j] = true;
-            moves++;
-            return true;
-        } else {
-            return false;
-        }
+        return executeMove(i, j, xBoard);
     }
 
     public boolean[][] getOboard() {
@@ -115,13 +109,22 @@ public class TicTacToe {
     		return false;
     	}
 
+        return executeMove(i, j, oBoard);
+
+    }
+
+    private boolean executeMove(int i, int j, boolean[][] board){
         if (validMove(i, j)) {
-            oBoard[i][j] = true;
+            board[i][j] = true;
             moves++;
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean movesAvaliable(){
+        return moves < 9;
     }
 
     // checks if X has won
@@ -144,11 +147,6 @@ public class TicTacToe {
     	}
 
         return checkWin(oBoard);
-    }
-
-    public int numberOfMoves() {
-
-    	return moves;
     }
 
     public int[] convertPos(int pos) {
@@ -295,7 +293,7 @@ public class TicTacToe {
                             x = false;
                         }
                     }
-                    if (!exit && game.numberOfMoves() >= 9){
+                    if (!exit && !game.movesAvaliable()){
 
                     	draw = true;
                         exit = true;
