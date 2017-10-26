@@ -39,8 +39,8 @@ public class TicTacToeTest {
 				assertTrue(game.setXboardPos(i, j));
 				assertFalse(game.setOboardPos(i, j));
 
-				assertEquals(true, game.getXboardPos(i, j));
-				assertEquals(false, game.getOboardPos(i, j));
+				assertTrue(game.getXboardPos(i, j));
+				assertFalse(game.getOboardPos(i, j));
 			}
 		}
 	}
@@ -57,8 +57,8 @@ public class TicTacToeTest {
 				assertTrue(game.setOboardPos(i, j));
 				assertFalse(game.setXboardPos(i, j));
 
-				assertEquals(true, game.getOboardPos(i, j));
-				assertEquals(false, game.getXboardPos(i, j));
+				assertTrue(game.getOboardPos(i, j));
+				assertFalse(game.getXboardPos(i, j));
 			}
 		}
 	}
@@ -126,7 +126,7 @@ public class TicTacToeTest {
 		assertTrue(game.setXboardPos(9));
 		assertTrue(game.setOboardPos(8));
 		assertTrue(game.setXboardPos(7));
-		assertFalse(game.movesAvaliable());
+		assertFalse(game.movesAvailable());
 		assertFalse(game.checkStateO());
 		assertFalse(game.checkStateX());
 	}

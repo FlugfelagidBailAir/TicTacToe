@@ -91,7 +91,7 @@ public class TicTacToe {
     //Put O at position 1-9, returns true if succesful play    
     public boolean setOboardPos(int pos) {
 
-    	if (moves >= 9) {
+    	if (!movesAvailable()) {
 
     		return false;
     	}
@@ -104,7 +104,7 @@ public class TicTacToe {
     //Put O at position (i,j), returns true if successful move
     public boolean setOboardPos(int i, int j) {
 
-    	if (moves >= 9) {
+    	if (!movesAvailable()) {
 
     		return false;
     	}
@@ -123,7 +123,7 @@ public class TicTacToe {
         }
     }
 
-    public boolean movesAvaliable(){
+    public boolean movesAvailable(){
         return moves < 9;
     }
 
@@ -260,7 +260,6 @@ public class TicTacToe {
         boolean exit = false;
         boolean x = true;
         boolean draw = false;
-
         while (!exit) {
             System.out.println(game.toString());
             if (x) {
@@ -293,7 +292,7 @@ public class TicTacToe {
                             x = false;
                         }
                     }
-                    if (!exit && !game.movesAvaliable()){
+                    if (!exit && !game.movesAvailable()){
 
                     	draw = true;
                         exit = true;
