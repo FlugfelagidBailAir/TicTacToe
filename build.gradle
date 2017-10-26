@@ -35,7 +35,8 @@ task toJar(type: Jar) {
 }
 dependencies {
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+testImplementation 'junit:junit:4.12'
+compile 'com.sparkjava:spark-core:2.3'
 }
 
 run{
