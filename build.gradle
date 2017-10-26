@@ -10,7 +10,7 @@
 apply plugin: 'java-library'
 apply plugin: 'application'
 
-mainClassName = "com.ru.hugb.TicTacToe"
+mainClassName = "com.ru.hugb.Main"
 version = '1.2'
 
 // In this section you declare where to find the dependencies of your project
@@ -36,7 +36,8 @@ task toJar(type: Jar) {
 dependencies {
     // Use JUnit test framework
 testImplementation 'junit:junit:4.12'
-compile 'com.sparkjava:spark-core:2.3'
+compile 'com.sparkjava:spark-core:2.6.0'
+compile 'org.slf4j:slf4j-simple:1.7.9'
 }
 
 run{
