@@ -4,6 +4,8 @@ body
 	width: auto;
 	font-family: arial, sans-serif;
 	margin: 0;
+	background: #000000;
+	color:#FFFFFF;
 }
 
 .headerimg
@@ -155,6 +157,8 @@ label
 	color: gray;
 }
 
+
+
 table
 {
 	width: 300px;
@@ -166,6 +170,7 @@ table
 table th 
 {
 	text-align: left; 
+
 
 }
 
