@@ -114,7 +114,7 @@ public class TicTacToe {
 
     		return false;
     	}
-    	
+
         if (validMove(i, j)) {
             oBoard[i][j] = true;
             moves++;
@@ -230,6 +230,10 @@ public class TicTacToe {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        sb.append("\n### TicTacToe ###\n");
+        sb.append("(press q to quit)\n\n");
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
 
@@ -266,8 +270,13 @@ public class TicTacToe {
                 do {
                     System.out.print("Select x pos: ");
                     if (!scan.hasNextInt()) {
+
+                        if (scan.next().equals("q")) {
+
+                        	return;
+                        }
+
                         System.out.println("Enter a valid position!");
-                        scan.next();
                         continue;
                     }
                     int xPos = scan.nextInt();
@@ -297,8 +306,13 @@ public class TicTacToe {
                 do {
                     System.out.print("Select O pos: ");
                     if (!scan.hasNextInt()) {
+
+                        if (scan.next().equals("q")) {
+
+                        	return;
+                        }
+
                         System.out.println("Enter a valid position!");
-                        scan.next();
                         continue;
                     }
                     int oPos = scan.nextInt();
