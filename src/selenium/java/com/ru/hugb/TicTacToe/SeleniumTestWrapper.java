@@ -21,7 +21,7 @@ public abstract class SeleniumTestWrapper {
 
   @BeforeClass
   public static void openBrowser() {
-    //System.setProperty("webdriver.gecko.driver", "/Users/Godi/Downloads/geckodriver");
+    System.setProperty("webdriver.chrome.driver", "/home/travis/build/FlugfelagidBailAir/TicTacToe/chromedriver");
     //driver = new FirefoxDriver();
     //baseUrl = "https://frozen-springs-99760.herokuapp.com/";
     driver = new ChromeDriver();
