@@ -8,7 +8,9 @@ public class TicTacToe {
     private Player playerO;
 
     public TicTacToe(Player playerX, Player playerO) {
-
+        if (playerX.equals(playerO)) {
+            throw new IllegalArgumentException("Players must have different names!");
+        }
         xBoard = new boolean[3][3];
         oBoard = new boolean[3][3];
         moves = 0;

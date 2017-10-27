@@ -15,11 +15,19 @@ public class Game {
             boolean draw = false;
             boolean quittedGame = false;
             System.out.println(scoreboard.toString());
-            System.out.println("Enter name player X:");
-            Player playerX = new Player(scan.next());
-            System.out.println("Enter name player O");
-            Player playerO = new Player(scan.next());
-            TicTacToe game = new TicTacToe(playerX, playerO);
+            TicTacToe game = null;
+
+            do {
+                System.out.println("Enter name player X:");
+                Player playerX = new Player(scan.next());
+                System.out.println("Enter name player O");
+                Player playerO = new Player(scan.next());
+                try {
+                    game = new TicTacToe(playerX, playerO);
+                } catch (IllegalArgumentException e){
+                    System.out.println(e);
+                }
+            }while (game == null);
             while (!exit) {
                 System.out.println(game.toString());
                 if (x) {
