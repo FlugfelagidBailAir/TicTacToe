@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestTTT extends SeleniumTestWrapper {
   @Test
   public void testTitle() {
-    driver.navigate.refresh();
+    //driver.navigate.refresh();
     WebDriverWait wait = new WebDriverWait(driver, 5);
     assertEquals("TicTacToe", driver.getTitle());
   }
