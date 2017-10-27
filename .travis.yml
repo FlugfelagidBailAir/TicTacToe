@@ -21,7 +21,7 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script:
-  - ./gradlew seleniumXvfb
+  - ./gradlew seleniumXvfb --info
 
 after_failure:
     - "cat /home/travis/build/FlugfelagidBailAir/TicTacToe/build/reports/tests/seleniumXvfb/index.html"
