@@ -24,13 +24,7 @@ public class TicTacToe {
     public boolean getXboardPos(int i, int j) {
         return playerX.getBoardPos(i,j);
     }
-
-    //Put X at position 1-9, returns true if succesful play
-    public boolean setXboardPos(int pos) {
-        int[] posTuple = convertPos(pos);
-        return setBoardPos(posTuple[0], posTuple[1], playerX);
-    }
-
+    
     public boolean setBoardPos(int pos, Player player) {
         int[] posTuple = convertPos(pos);
         return setBoardPos(posTuple[0], posTuple[1], player);
