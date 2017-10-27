@@ -7,8 +7,9 @@ import spark.Route;
 
 public class Main {
     public static void main(String[] args) {
-
-    	TicTacToe game = new TicTacToe();
+		Player O = new Player("temp");
+		Player X = new Player("temp2");
+    	TicTacToe game = new TicTacToe(X, O);
 
     	staticFileLocation("/public");
 

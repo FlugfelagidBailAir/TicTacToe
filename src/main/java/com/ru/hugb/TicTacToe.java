@@ -1,18 +1,19 @@
 package com.ru.hugb;
 
-import java.lang.Exception;
-import java.util.Scanner;
-
 public class TicTacToe {
     private boolean[][] xBoard;
     private boolean[][] oBoard;
     private int moves;
+    private Player playerX;
+    private Player playerO;
 
-    public TicTacToe() {
+    public TicTacToe(Player playerX, Player playerO) {
 
         xBoard = new boolean[3][3];
         oBoard = new boolean[3][3];
         moves = 0;
+        this.playerX = playerX;
+        this.playerO = playerO;
 
         for (int i = 0; i < 3; i++) {
 
@@ -24,6 +25,14 @@ public class TicTacToe {
         }
     }
 
+    public Player getPlayerX() {
+        return playerX;
+    }
+
+    public Player getPlayerO() {
+        return playerO;
+    }
+
     //Board getters and setters:
 
     public boolean[][] getXboard() {
@@ -33,9 +42,9 @@ public class TicTacToe {
 
     public boolean getXboardPos(int pos) {
 
-    	int [] posTuple = convertPos(pos);
+        int[] posTuple = convertPos(pos);
 
-    	return getXboardPos(posTuple[0], posTuple[1]);
+        return getXboardPos(posTuple[0], posTuple[1]);
     }
 
     public boolean getXboardPos(int i, int j) {
@@ -45,28 +54,24 @@ public class TicTacToe {
         return xBoard[i][j];
     }
 
-	//Put X at position 1-9, returns true if succesful play    
+    //Put X at position 1-9, returns true if succesful play
     public boolean setXboardPos(int pos) {
 
-    	if (moves >= 9) {
+        if (moves >= 9) {
 
-    		return false;
-    	}
+            return false;
+        }
 
-    	int [] posTuple = convertPos(pos);
+        int[] posTuple = convertPos(pos);
 
-    	return setXboardPos(posTuple[0], posTuple[1]);
+        return setXboardPos(posTuple[0], posTuple[1]);
     }
 
     //Put X at position (i,j), returns true if succesful play
     public boolean setXboardPos(int i, int j) {
 
-    	if (moves >= 9) {
+        return movesAvailable() && executeMove(i, j, xBoard);
 
-    		return false;
-    	}
-
-        return executeMove(i, j, xBoard);
     }
 
     public boolean[][] getOboard() {
@@ -76,9 +81,9 @@ public class TicTacToe {
 
     public boolean getOboardPos(int pos) {
 
-    	int [] posTuple = convertPos(pos);
+        int[] posTuple = convertPos(pos);
 
-    	return getOboardPos(posTuple[0], posTuple[1]);
+        return getOboardPos(posTuple[0], posTuple[1]);
     }
 
     public boolean getOboardPos(int i, int j) {
@@ -91,29 +96,24 @@ public class TicTacToe {
     //Put O at position 1-9, returns true if succesful play    
     public boolean setOboardPos(int pos) {
 
-    	if (!movesAvailable()) {
+        if (!movesAvailable()) {
 
-    		return false;
-    	}
+            return false;
+        }
 
-    	int [] posTuple = convertPos(pos);
+        int[] posTuple = convertPos(pos);
 
-    	return setOboardPos(posTuple[0], posTuple[1]);
+        return setOboardPos(posTuple[0], posTuple[1]);
     }
 
     //Put O at position (i,j), returns true if successful move
     public boolean setOboardPos(int i, int j) {
 
-    	if (!movesAvailable()) {
-
-    		return false;
-    	}
-
-        return executeMove(i, j, oBoard);
+        return movesAvailable() && executeMove(i, j, oBoard);
 
     }
 
-    private boolean executeMove(int i, int j, boolean[][] board){
+    private boolean executeMove(int i, int j, boolean[][] board) {
         if (validMove(i, j)) {
             board[i][j] = true;
             moves++;
@@ -123,17 +123,17 @@ public class TicTacToe {
         }
     }
 
-    public boolean movesAvailable(){
+    public boolean movesAvailable() {
         return moves < 9;
     }
 
     // checks if X has won
     public boolean checkStateX() {
 
-    	if (moves < 5) {
+        if (moves < 5) {
 
-    		return false;
-    	}
+            return false;
+        }
 
         return checkWin(xBoard);
     }
@@ -141,15 +141,15 @@ public class TicTacToe {
     // checks if O has won
     public boolean checkStateO() {
 
-    	if (moves < 5) {
+        if (moves < 5) {
 
-    		return false;
-    	}
+            return false;
+        }
 
         return checkWin(oBoard);
     }
 
-    public int[] convertPos(int pos) {
+    private int[] convertPos(int pos) {
 
         int i;
         int j;
@@ -217,9 +217,31 @@ public class TicTacToe {
     }
 
     // checks if the move is valid, false at i, j in both X and O boards
-    private boolean validMove(int i, int j){
+    private boolean validMove(int i, int j) {
         validateIndex(i, j);
-        return !getXboardPos(i,j) && !getOboardPos(i, j);
+        return !getXboardPos(i, j) && !getOboardPos(i, j);
+    }
+
+    public Player getWinner() {
+        if (checkStateX()) {
+            return playerX;
+        } else if (checkStateO()) {
+            return playerO;
+        } else {
+            return null;
+        }
+    }
+
+    public Player getLoser() {
+        if (getWinner().equals(playerX)){
+            return playerO;
+        }
+        if (getWinner().equals(playerO)){
+            return playerX;
+        }
+        else {
+            return null;
+        }
     }
 
     /**
@@ -228,7 +250,6 @@ public class TicTacToe {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-
         sb.append("\n### TicTacToe ###\n");
         sb.append("(press q to quit)\n\n");
 
@@ -251,101 +272,5 @@ public class TicTacToe {
             sb.append('\n');
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-
-        Scanner scan = new Scanner(System.in);
-        TicTacToe game = new TicTacToe();
-        boolean exit = false;
-        boolean x = true;
-        boolean draw = false;
-        while (!exit) {
-            System.out.println(game.toString());
-            if (x) {
-                boolean xMove = false;
-                do {
-                    System.out.print("Select x pos: ");
-                    if (!scan.hasNextInt()) {
-
-                        if (scan.next().equals("q")) {
-
-                        	return;
-                        }
-
-                        System.out.println("Enter a valid position!");
-                        continue;
-                    }
-                    int xPos = scan.nextInt();
-                    try {
-                        xMove = game.setXboardPos(xPos);
-                    } catch (Exception e) {
-                        System.out.println("Enter a valid position!");
-                        continue;
-                    }
-                    
-                    if (!xMove) {
-                        System.out.println("Invalid move! Try again!");
-                    } else {
-                        exit = game.checkStateX();
-                        if (!exit) {
-                            x = false;
-                        }
-                    }
-                    if (!exit && !game.movesAvailable()){
-
-                    	draw = true;
-                        exit = true;
-                    }
-                } while (!xMove);
-            } else {
-                boolean oMove = false;
-                do {
-                    System.out.print("Select O pos: ");
-                    if (!scan.hasNextInt()) {
-
-                        if (scan.next().equals("q")) {
-
-                        	return;
-                        }
-
-                        System.out.println("Enter a valid position!");
-                        continue;
-                    }
-                    int oPos = scan.nextInt();
-                    try {
-                        oMove = game.setOboardPos(oPos);
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Enter a valid position!");
-                        continue;
-                    }
-                    
-                    if (!oMove) {
-                        System.out.println("Invalid move! Try again!");
-                    } else {
-                        exit = game.checkStateO();
-                        if (!exit) {
-                            x = true;
-                        }
-                    }
-                } while (!oMove);
-            }
-        }
-
-        System.out.println(game.toString());
-        System.out.println("");
-
-        if (draw){
-            System.out.println("Draw!");
-        }else {
-            if (x) {
-
-                System.out.println("Winner is X!");
-
-            } else {
-
-                System.out.println("Winner is O!");
-            }
-        }
     }
 }

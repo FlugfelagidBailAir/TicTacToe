@@ -10,7 +10,7 @@
 apply plugin: 'java-library'
 apply plugin: 'application'
 
-mainClassName = "com.ru.hugb.Main"
+mainClassName = "com.ru.hugb.Game"
 version = '1.2'
 
 // In this section you declare where to find the dependencies of your project
