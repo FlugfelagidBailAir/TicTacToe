@@ -8,6 +8,7 @@ deploy:
     repo: FlugfelagidBailAir/TicTacToe
 before_install:
 - chmod +x gradlew
+- "chmod 777 bin/xvfb"
 
 script:
-  - ./gradlew seleniumXvfb 
+  - ./gradlew seleniumXvfb
