@@ -21,10 +21,6 @@ public class TicTacToe {
         return playerO;
     }
 
-    public boolean getXboardPos(int i, int j) {
-        return playerX.getBoardPos(i,j);
-    }
-    
     public boolean setBoardPos(int pos, Player player) {
         int[] posTuple = convertPos(pos);
         return setBoardPos(posTuple[0], posTuple[1], player);

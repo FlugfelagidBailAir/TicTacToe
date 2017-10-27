@@ -51,7 +51,7 @@ public class TicTacToeTest {
 
 		TicTacToe game = new TicTacToe(X, O);
 
-		game.getXboardPos(-1, 3);
+		game.getBoardPos(-1, 3, X);
 	}
 
 	@Test
