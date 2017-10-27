@@ -6,6 +6,10 @@ deploy:
   app: frozen-springs-99760
   on:
     repo: FlugfelagidBailAir/TicTacToe
+
+addons:
+  chrome: stable
+
 before_install:
 - chmod +x gradlew
 - "chmod 777 bin/xvfb"
