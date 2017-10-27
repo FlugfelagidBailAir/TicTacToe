@@ -129,10 +129,17 @@ label
 {
 	border-top: 3px solid #DCDCDC;
 	border-bottom: 3px solid #DCDCDC;
-	text-align: left;
+	text-align: center;
 	padding: 20px;
 	height: 360px;	
 
+}
+.win
+{
+	opacity: 0.2;
+	font-size: 50px;
+	color: black;
+	background-color: white;
 }
 .box
 {

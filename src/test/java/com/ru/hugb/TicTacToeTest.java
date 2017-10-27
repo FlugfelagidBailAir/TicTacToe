@@ -129,4 +129,14 @@ public class TicTacToeTest {
 		assertFalse(game.checkStateO());
 		assertFalse(game.checkStateX());
 	}
+
+	@Test
+	public void testSetPosition() {
+
+		TicTacToe game = new TicTacToe();
+
+		assertEquals("X", game.setPosition("1"));
+		assertTrue(game.getPosition("1"));
+		assertFalse(game.getPosition("2"));
+	}
 }

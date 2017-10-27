@@ -129,6 +129,11 @@ public class TicTacToe {
 
     }
 
+    public boolean getPosition(String pos) {
+
+        return getOboardPos(Integer.parseInt(pos)) || getXboardPos(Integer.parseInt(pos));
+    }
+
     public String setPosition(String pos) {
 
         if (isX) {
@@ -147,6 +152,26 @@ public class TicTacToe {
         }
 
         return "Failed to set move!";
+    }
+
+    public String checkStatus() {
+
+        if (checkStateX()) {
+
+            return "x";
+
+        } else if (checkStateO()) {
+
+            return "O";
+
+        } else if (movesAvailable() == false) {
+
+            return "draw";
+
+        } else {
+
+            return "";
+        }
     }
 
     private boolean executeMove(int i, int j, boolean[][] board){

@@ -19,5 +19,15 @@ public class Main {
 
 			return turn;
         });
+
+        get("/get/:pos", (req, res) -> { 
+
+        	return game.getPosition(req.params("pos")); 
+        });
+
+        get("/check/", (req, res) -> { 
+
+        	return game.checkStatus(); 
+        });
 	}
 }
