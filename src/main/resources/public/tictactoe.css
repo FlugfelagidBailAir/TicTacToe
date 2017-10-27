@@ -139,6 +139,7 @@ label
 	float: left;
 	width: 33.3333%;
 	height: 80px;
+
 }
 
 .firstrow
@@ -190,6 +191,7 @@ label
 	height: 100%;
 	width: 70%;
 	padding-left: 10px;
+	border-radius: 1em;
 
 }
 
@@ -255,6 +257,7 @@ footer
     text-transform: uppercase;
     font-size: 14px;
     clear: both;
+    width: 1120px;
 }
 .email
 {
