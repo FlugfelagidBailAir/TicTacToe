@@ -17,3 +17,6 @@ before_install:
 - "sh -e /etc/init.d/xvfb start"
 script:
   - ./gradlew seleniumXvfb
+
+after_failure:
+    - "cat /home/travis/build/FlugfelagidBailAir/TicTacToe/build/reports/tests/seleniumXvfb/index.html"
