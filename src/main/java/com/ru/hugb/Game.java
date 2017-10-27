@@ -16,16 +16,18 @@ public class Game {
             boolean quittedGame = false;
             System.out.println(scoreboard.toString());
             TicTacToe game = null;
+            Player playerX;
+            Player playerO;
 
             do {
-                System.out.println("Enter name player X:");
-                Player playerX = new Player(scan.next());
-                System.out.println("Enter name player O");
-                Player playerO = new Player(scan.next());
                 try {
+                    System.out.println("Enter name player X:");
+                    playerX = new Player(scan.next());
+                    System.out.println("Enter name player O");
+                    playerO = new Player(scan.next());
                     game = new TicTacToe(playerX, playerO);
                 } catch (IllegalArgumentException e){
-                    System.out.println(e);
+                    System.out.println(e.getMessage());
                 }
             }while (game == null);
             while (!exit) {
