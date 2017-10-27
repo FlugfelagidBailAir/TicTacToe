@@ -7,12 +7,14 @@ public class TicTacToe {
     private boolean[][] xBoard;
     private boolean[][] oBoard;
     private int moves;
+    private boolean isX;
 
     public TicTacToe() {
 
         xBoard = new boolean[3][3];
         oBoard = new boolean[3][3];
         moves = 0;
+        isX = true;
 
         for (int i = 0; i < 3; i++) {
 
@@ -66,7 +68,14 @@ public class TicTacToe {
     		return false;
     	}
 
-        return executeMove(i, j, xBoard);
+        if (executeMove(i, j, xBoard)) {
+
+            isX = false;
+
+            return true;
+        }
+
+        return false;
     }
 
     public boolean[][] getOboard() {
@@ -109,8 +118,35 @@ public class TicTacToe {
     		return false;
     	}
 
-        return executeMove(i, j, oBoard);
+        if (executeMove(i, j, oBoard)) {
 
+            isX = true;
+
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public String setPosition(String pos) {
+
+        if (isX) {
+
+            if (setXboardPos(Integer.parseInt(pos))) {
+
+                return "X";
+            }
+
+        } else {
+
+            if (setOboardPos(Integer.parseInt(pos))) {
+
+                return "O";
+            }
+        }
+
+        return "Failed to set move!";
     }
 
     private boolean executeMove(int i, int j, boolean[][] board){

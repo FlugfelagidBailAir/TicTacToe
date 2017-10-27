@@ -4,6 +4,7 @@ import static spark.Spark.*;
 import spark.Request;
 import spark.Response;
 import spark.Route;
+import spark.QueryParamsMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,7 +13,11 @@ public class Main {
 
     	staticFileLocation("/public");
 
-        get("/:pos", (req, res) -> game.setXboardPos(Integer.parseInt(":pos")));
+        put("/:pos", (req, res) -> {
 
+            String turn = game.setPosition(req.params("pos"));
+
+			return turn;
+        });
 	}
 }
