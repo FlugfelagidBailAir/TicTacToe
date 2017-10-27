@@ -76,7 +76,7 @@ task seleniumXvfb(type: Test, dependsOn: installDist) {
 
     doFirst {
         'bin/xvfb start'.execute()
-        'build/scripts/Project &'.execute()
+        'build/install/Project/bin/Project &'.execute()
     }
 
     doLast {
