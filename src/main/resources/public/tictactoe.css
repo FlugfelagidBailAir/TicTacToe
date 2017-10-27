@@ -130,10 +130,76 @@ label
 	border-top: 3px solid #DCDCDC;
 	border-bottom: 3px solid #DCDCDC;
 	text-align: left;
-	padding: 50px;
-	height: 280px;	
+	padding: 20px;
+	height: 360px;	
 
 }
+.box
+{
+	float: left;
+	width: 33.3333%;
+	height: 80px;
+}
+
+.firstrow
+{
+	padding: 20px;
+	height: 80px;
+	clear: both;
+}
+
+.secondrow
+{
+	padding: 20px;
+	height: 80px;
+	clear: both;
+}
+
+.thirdrow
+{
+	padding: 20px;
+	height: 80px;
+	clear: both;
+}
+
+.one, .four , .seven
+{
+	float:left;
+	width: 200px;
+}
+
+.two, .five, .eight
+{
+	margin: 0 auto;
+	float:center;
+	width:200px;
+
+}
+.three, .six, .nine
+{
+	float:right;
+	width: 200px;
+}
+
+
+.one, .two, .three , .four, .five, .six, .seven, .eight, .nine
+{
+
+	border-top: 3px solid #DCDCDC; 
+	background: #eaeaea;
+	height: 100%;
+	width: 70%;
+	padding-left: 10px;
+
+}
+
+
+.one:hover, .two:hover, .three:hover , .four:hover, .five:hover, .six:hover, .seven:hover, .eight:hover, .nine:hover
+{ 
+    background-color: #c1ffc1;
+}
+
+
 
 #button
 {
