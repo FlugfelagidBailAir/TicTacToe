@@ -16,8 +16,8 @@ public class Game {
             boolean quittedGame = false;
             System.out.println(scoreboard.toString());
             TicTacToe game = null;
-            Player playerX;
-            Player playerO;
+            Player playerX = null;
+            Player playerO = null;
 
             do {
                 try {
@@ -50,7 +50,7 @@ public class Game {
                         }
                         int xPos = scan.nextInt();
                         try {
-                            xMove = game.setXboardPos(xPos);
+                            xMove = game.setBoardPos(xPos, playerX);
                         } catch (Exception e) {
                             System.out.println("Enter a valid position!");
                             continue;
@@ -59,7 +59,7 @@ public class Game {
                         if (!xMove) {
                             System.out.println("Invalid move! Try again!");
                         } else {
-                            exit = game.checkStateX();
+                            exit = game.checkState(playerX);
                             if (!exit) {
                                 x = false;
                             }
@@ -88,7 +88,7 @@ public class Game {
                         }
                         int oPos = scan.nextInt();
                         try {
-                            oMove = game.setOboardPos(oPos);
+                            oMove = game.setBoardPos(oPos, playerO);
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println("Enter a valid position!");
                             continue;
@@ -97,7 +97,7 @@ public class Game {
                         if (!oMove) {
                             System.out.println("Invalid move! Try again!");
                         } else {
-                            exit = game.checkStateO();
+                            exit = game.checkState(playerO);
                             if (!exit) {
                                 x = true;
                             }
