@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,17 +20,13 @@ public abstract class SeleniumTestWrapper {
 
   @BeforeClass
   public static void openBrowser() {
-    System.setProperty("webdriver.chrome.driver", "/home/travis/build/FlugfelagidBailAir/TicTacToe/chromedriver");
+    //System.setProperty("webdriver.chrome.driver", "/home/travis/build/FlugfelagidBailAir/TicTacToe/chromedriver");
     //driver = new FirefoxDriver();
     //baseUrl = "https://frozen-springs-99760.herokuapp.com/";
     driver = new ChromeDriver();
 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    port = System.getenv("PORT");
-    if (port == null) {
-        port = "4567";
-    }
     baseUrl = "http://localhost:4567";
 
     driver.get(baseUrl);
