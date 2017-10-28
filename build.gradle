@@ -10,7 +10,7 @@
 apply plugin: 'java-library'
 apply plugin: 'application'
 
-mainClassName = "com.ru.hugb.TicTacToe"
+mainClassName = "com.ru.hugb.Game"
 version = '1.2'
 
 // In this section you declare where to find the dependencies of your project
@@ -20,7 +20,7 @@ repositories {
     jcenter()
 }
 task stage (dependsOn: installDist){
-	
+
 }
 //create a single Jar with all dependencies
 task toJar(type: Jar) {
@@ -33,11 +33,33 @@ task toJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
+
+sourceSets {
+    selenium
+}
+
 dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'org.slf4j:slf4j-simple:1.7.9'
+
+    //Selenium
+    testCompile 'org.testng:testng:6.10'
+
+    seleniumCompile 'junit:junit:4.11'
+    seleniumCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
 }
 
 run{
     standardInput = System.in
+}
+
+task selenium(type: Test, dependsOn: installDist) {
+  testClassesDir = sourceSets.selenium.output.classesDir
+  classpath = sourceSets.selenium.runtimeClasspath
+
+  doFirst {
+    'build/scripts/Project'.execute()
+  }
 }
