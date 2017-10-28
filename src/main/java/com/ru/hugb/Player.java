@@ -10,13 +10,33 @@ public class Player implements Serializable {
     private String name;
     private int numberOfWins;
     private int numberOfLosses;
+    private boolean[][] board;
 
     public Player(String name) {
         if (name == null || name.isEmpty()){
             throw new IllegalArgumentException("Player must be given a name!");
         }
         this.name = name.trim();
+        board = new boolean[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board[i][j] = false;
+            }
+        }
     }
+
+    public boolean[][] getBoard(){
+        return board;
+    }
+
+    public boolean getBoardPos(int i, int j){
+        return board[i][j];
+    }
+
+    public void setBoard(int i, int j){
+        board[i][j] = true;
+    }
+
 
     /**
      * @return the number of losses stored in the numberOfLosses variable

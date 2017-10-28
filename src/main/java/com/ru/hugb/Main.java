@@ -13,7 +13,7 @@ public class Main {
 
     	staticFileLocation("/public");
 
-        get("/:pos", (req, res) -> game.setXboardPos(Integer.parseInt(":pos")));
+        get("/:pos", (req, res) -> game.setBoardPos(Integer.parseInt(":pos"), X));
 
 	}
 }
