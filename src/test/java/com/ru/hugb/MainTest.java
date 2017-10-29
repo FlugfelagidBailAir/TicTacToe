@@ -75,7 +75,7 @@ public class MainTest {
 		assertEquals("X", main.setPositionAt("0", "1"));
 		assertEquals("O", main.setPositionAt("0", "7"));
 		assertEquals("X", main.setPositionAt("0", "5"));
-		assertEquals("O", main.setPositionAt("0", "3"));
+		assertEquals("O", main.setPositionAt("0", "2"));
 		assertEquals("X", main.setPositionAt("0", "3"));
 		assertEquals("O", main.setPositionAt("0", "9"));
 		assertEquals("X", main.setPositionAt("0", "6"));
