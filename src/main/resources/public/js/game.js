@@ -2,6 +2,30 @@ $(document).ready(function() {
 
   var gameId;
 
+  updateScore();
+
+  function updateScore() {
+
+    $.ajax({
+      url: "/scoreboard/",
+      type: "GET",
+      success: function(result) {
+
+        var scoreboard = $.parseJSON(result);
+
+        if (scoreboard.length != 0) {
+
+          $("#scoreBoard tbody").empty()
+
+          for (var i = 0; i < scoreboard.length; i++) {
+
+            $("#scoreBoard tbody").append("<tr><th scope=\"row\" class=\"rownumber\">" + (i + 1) +"</th><td>" + scoreboard[i].name + "</td><td>" + scoreboard[i].wins + "</td><td>" + scoreboard[i].losses + "</td></tr>");
+          }
+        }
+      }
+    });
+  }
+
   function quitGame() {
 
     $.ajax({
@@ -66,16 +90,19 @@ $(document).ready(function() {
 
                     $("#game").toggleClass("win").text("Winner is X!");
                     quitGame();
+                    updateScore();
 
                   } else if (result == "o") {
 
                     $("#game").addClass("win").text("Winner is O!");
                     quitGame();
+                    updateScore();
 
                   } else if (result == "draw") {
 
                     $("#game").toggleClass("win").text("Draw!");
                     quitGame();
+                    updateScore();
                   }
                 }
               });

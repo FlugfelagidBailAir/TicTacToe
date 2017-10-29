@@ -116,5 +116,17 @@ public class Scoreboard implements Serializable {
         return sb.toString();
     }
 
+    public Player [] getTopFive() {
 
+        sortPlayers();
+
+        Player [] topFive = new Player[5];
+
+        for (int i = 0; i < 5 && i < players.size(); i++) {
+
+            topFive[i] = players.get(i);
+        }
+
+        return topFive;
+    }
 }

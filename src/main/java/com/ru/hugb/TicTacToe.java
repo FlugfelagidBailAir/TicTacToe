@@ -66,8 +66,6 @@ public class TicTacToe {
         return playerX.getBoardPos(i, j) || playerO.getBoardPos(i, j);
     }
 
-        
-
     public boolean movesAvailable() {
         return moves < 9;
     }
@@ -106,6 +104,7 @@ public class TicTacToe {
         }
     }
 
+    //Converts single number position into tuple
     private int[] convertPos(int pos) {
         int i;
         int j;
