@@ -1,16 +1,21 @@
 package com.ru.hugb;
 
 public class TicTacToe {
-    private int moves = 0;
+
     private Player playerX;
     private Player playerO;
+    private int moves;
+    private boolean isX;
 
     public TicTacToe(Player playerX, Player playerO) {
         if (playerX.equals(playerO)) {
             throw new IllegalArgumentException("Players must have different names!");
         }
+
         this.playerX = playerX;
         this.playerO = playerO;
+        moves = 0;
+        isX = true;
     }
 
     public Player getPlayerX() {
@@ -26,6 +31,52 @@ public class TicTacToe {
         return setBoardPos(posTuple[0], posTuple[1], player);
     }
 
+    public String setPosition(int pos) {
+
+        int[] posTuple = convertPos(pos);
+
+        if (setBoardPos(posTuple[0], posTuple[1])) {
+
+            if (isX) {
+
+                isX = false;
+
+                return "X";
+
+            } else {
+
+                isX = true;
+
+                return "O";
+            }
+        }
+
+        return "Failed to set move!";
+    }
+
+    private boolean setBoardPos(int i, int j) {
+
+        if (!movesAvailable() && validMove(i, j)) {
+
+            return false;
+        }
+
+        if(isX) {
+
+            playerX.setBoard(i, j);
+            moves++;
+            
+            return true;
+
+        } else {
+
+            playerO.setBoard(i, j);
+            moves++;            
+
+            return true;
+        }
+    }
+
     private boolean setBoardPos(int i, int j, Player player){
         return movesAvailable() && executeMove(i,j, player);
     }
@@ -33,6 +84,30 @@ public class TicTacToe {
     public boolean getBoardPos(int i, int j, Player player) {
         validateIndex(i,j);
         return player.getBoardPos(i, j);
+    }
+
+    public boolean getPosition(int pos) {
+
+        int [] posTuple = convertPos(pos);
+        int i = posTuple[0];
+        int j = posTuple[1];
+
+        validateIndex(i, j);
+
+        return playerX.getBoardPos(i, j) || playerO.getBoardPos(i, j);
+    }
+
+        
+
+    public boolean movesAvailable() {
+        return moves < 9;
+    }
+
+    public boolean checkState(Player player){
+        if (moves < 5) {
+            return false;
+        }
+        return checkWin(player.getBoard());
     }
 
     private boolean executeMove(int i, int j,Player player) {
@@ -45,15 +120,24 @@ public class TicTacToe {
         }
     }
 
-    public boolean movesAvailable() {
-        return moves < 9;
-    }
+    public String checkStatus() {
 
-    public boolean checkState(Player player){
-        if (moves < 5) {
-            return false;
+        if (checkRowsAndColumns(playerX.getBoard()) || checkDiagonal(playerX.getBoard())) {
+
+            return "x";
+
+        } else if (checkRowsAndColumns(playerO.getBoard()) || checkDiagonal(playerO.getBoard())) {
+
+            return "O";
+
+        } else if (movesAvailable() == false) {
+
+            return "draw";
+
+        } else {
+
+            return "";
         }
-        return checkWin(player.getBoard());
     }
 
     private int[] convertPos(int pos) {
@@ -154,7 +238,7 @@ public class TicTacToe {
 
                     sb.append("X").append(' ');
 
-                } else if (getBoardPos(i, j,playerO)) {
+                } else if (getBoardPos(i, j, playerO)) {
 
                     sb.append("O").append(' ');
 

@@ -10,7 +10,7 @@
 apply plugin: 'java-library'
 apply plugin: 'application'
 
-mainClassName = "com.ru.hugb.Game"
+mainClassName = "com.ru.hugb.Main"
 version = '1.2'
 
 // In this section you declare where to find the dependencies of your project
@@ -36,6 +36,7 @@ task toJar(type: Jar) {
 
 sourceSets {
     selenium
+    seleniumXvfb
 }
 
 dependencies {
@@ -43,12 +44,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile 'com.sparkjava:spark-core:2.6.0'
     compile 'org.slf4j:slf4j-simple:1.7.9'
+    compile group: 'org.json', name: 'json', version: '20141113'
 
     //Selenium
     testCompile 'org.testng:testng:6.10'
 
     seleniumCompile 'junit:junit:4.11'
     seleniumCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
+
+    seleniumXvfbCompile 'junit:junit:4.11'
+    seleniumXvfbCompile 'org.seleniumhq.selenium:selenium-java:2.48.2'
 }
 
 run{
@@ -62,4 +67,20 @@ task selenium(type: Test, dependsOn: installDist) {
   doFirst {
     'build/scripts/Project'.execute()
   }
+}
+
+task seleniumXvfb(type: Test, dependsOn: installDist) {
+    testClassesDir = sourceSets.selenium.output.classesDir
+    classpath = sourceSets.selenium.runtimeClasspath
+
+    environment "DISPLAY", ":99"
+
+    doFirst {
+        'bin/xvfb start'.execute()
+        'build/install/Project/bin/Project &'.execute()
+    }
+
+    doLast {
+        'sh -e /etc/init.d/xvfb stop'.execute()
+    }
 }
