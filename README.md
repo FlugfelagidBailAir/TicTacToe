@@ -14,5 +14,9 @@ Late fall semester project for HUGB3003
 
 # Downloads
 
-You can download the latest release at:
+You can download the latest release of console version at:
 [https://github.com/FlugfelagidBailAir/TicTacToe/releases/latest](https://github.com/FlugfelagidBailAir/TicTacToe/releases/latest)
+
+# WebApp
+
+Latest version of the webapp is at: [https://frozen-springs-99760.herokuapp.com/](https://frozen-springs-99760.herokuapp.com/)
