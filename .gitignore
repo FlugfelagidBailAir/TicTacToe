@@ -1,3 +1,6 @@
+# Linux deleted file leftovers
+.fuse_hidden*
+
 # Compiled class file
 *.class
 
