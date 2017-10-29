@@ -1,139 +1,148 @@
-body 
+body
 {
 	height: auto;
 	width: auto;
 	font-family: arial, sans-serif;
 	margin: 0;
-	background: #000000;
-	color:#FFFFFF;
-}
-
-.headerimg
-{
-	height: 40px;
-	width: 40px;
-}
-
-.center-col
-{
-	width: 1024px;
-	margin: 0 auto;
-}
-h1
-{
-	text-indent: left;
-	color: #b6c1ff;
-	font-weight: normal;
-	text-align: right;
-	display: inline;
-	line-height: 40px;
-	font-size: 15px;
-}
-
-.right
-{
-	text-align: right;
-	padding-bottom: 10px;
-}
-img
-{
-	height: 30px;
-	width: 30px; 
+	background: #e8eaed;
 }
 
 header
 {
-	 border-top: 2px solid #b6c1ff; 
-	 border-bottom: 2px solid #b6c1ff; 
-	 background: #ffb6c1;	 
-	 padding: 25px 0px;
-	 font-weight: normal;	 
+	 background: #323a46;
+	 height: 120px;
+	 align-content: center;
 }
 
-.tictactitle
+footer
 {
-	 text-align: center;
-	 vertical-align: middle;
-	 line-height: 50px; 
-	 text-transform: uppercase;
-	 color: #c1ffc1;
-	 letter-spacing: 1px;
-	 font-size: 30px;
+  text-align: right;
+  word-spacing: 5px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  text-transform: uppercase;
+  font-size: 14px;
+  clear: both;
+  width: 1120px;
 }
 
-.boxmain
-{
-	float: left;
-	width: 100%;
-	height: 500px;
-
-}
-
-#main
-{
-  width: 70%;
-  padding: 10px;
-  padding-bottom: 50px;
-  padding-top:65px;
-  float: left;
-
-}
-
-#scoreBoard
-{
-  width: 200px;
-  float: right;
-  padding-top: 70px;
-  padding-left: 0px;
-}
-
-#start
-{
-	font-weight: bold;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	border-radius: 5em;
-	border-top: 2px solid #b6c1ff; 
-	 border-bottom: 2px solid #b6c1ff; 
-	 background: #ffb6c1;	
-}
-
-#PlayerOne 
-{
-	border-radius: 3px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DCDCDC;
-	height: 20px;
-	width: 150px;
-	color: #c1ffc1;
-}
-
-#PlayerTwo
-{
-	border-radius: 3px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DCDCDC;
-	height: 20px;
-	width: 150px;
-	
-}
-
-label
-{
-	color: #c1ffc1;
-}
-
-#game
-{
-	border-top: 3px solid #DCDCDC;
-	border-bottom: 3px solid #DCDCDC;
+h3{
+	color: #e8eaed;
+	text-transform: uppercase;
 	text-align: center;
-	padding: 20px;
-	height: 360px;	
-
 }
+
+h1{
+	color: #edbf19;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 50px;
+  text-align: center;
+}
+
+/*Outline css*/
+.container {
+  display: flex;
+  width: 860px;
+  margin: 1em auto 0;
+}
+
+.container > * {
+  padding: 20px 25px;
+}
+
+.submit{
+    float: right;
+		width: 120px;
+		color: #323a46;
+		background: #edbf19;
+}
+
+.players
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DCDCDC;
+	height: 20px;
+	width: 300px;
+	color: #323a46;
+}
+
+/*Scoreboard*/
+.ScoreBoard {
+  position: relative;
+  flex-basis: 260px;
+}
+
+table
+{
+	width: 300px;
+	border-spacing: 3px;
+	border-collapse:collapse;
+	border: 1px solid #323a46;
+}
+
+table th
+{
+	text-align: left;
+}
+
+table td, table th
+{
+	padding: 15px;
+	border-bottom: 1px solid #323a46;
+}
+
+/*Game css*/
+.firstrow .box{
+	border-left: none !important;
+}
+.thirdrow .box{
+	border-right: none !important;
+}
+#top{
+	border-top: none !important;
+}
+#bottom{
+	border-bottom: none !important;
+}
+
+#userInput{
+	padding: 10px;
+}
+#game {
+  border-collapse: collapse;
+  width: 360px;
+  margin: 0 auto;
+	display: -webkit-box;
+	vertical-align: middle;
+	border-color: inherit;
+}
+#game .box {
+  width: 120px;
+  height: 120px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #323a46;;
+	cursor: pointer;
+}
+#game .box:before {
+  font-size: 1.5em;
+  line-height: 1;
+}
+#game .box.X:before {
+  content: "X";
+  color: orange;
+}
+#game .box.O:before {
+  content: "O";
+  color: green;
+}
+#game .box:hover{
+  opacity: 0.6;
+}
+
+/*Screens*/
 .win
 {
 	opacity: 0.2;
@@ -141,145 +150,3 @@ label
 	color: black;
 	background-color: white;
 }
-.box
-{
-	float: left;
-	width: 33.3333%;
-	height: 80px;
-
-}
-
-.firstrow
-{
-	padding: 20px;
-	height: 80px;
-	clear: both;
-}
-
-.secondrow
-{
-	padding: 20px;
-	height: 80px;
-	clear: both;
-}
-
-.thirdrow
-{
-	padding: 20px;
-	height: 80px;
-	clear: both;
-}
-
-.one, .four , .seven
-{
-	float:left;
-	width: 200px;
-}
-
-.two, .five, .eight
-{
-	margin: 0 auto;
-	float:center;
-	width:200px;
-
-}
-.three, .six, .nine
-{
-	float:right;
-	width: 200px;
-}
-
-
-.one, .two, .three , .four, .five, .six, .seven, .eight, .nine
-{
-
-	border-top: 3px solid #DCDCDC; 
-	background: #eaeaea;
-	height: 100%;
-	width: 70%;
-	padding-left: 10px;
-	border-radius: 1em;
-	color: black;
-}
-
-
-.one:hover, .two:hover, .three:hover , .four:hover, .five:hover, .six:hover, .seven:hover, .eight:hover, .nine:hover
-{ 
-    background-color: #c1ffc1;
-}
-
-
-
-.submit
-{
-	font-size: 110%;
-	color: gray;
-	width: 80px; 
-	height: 30px;
-	text-align: center;
-	background-color: white;
-	border-radius: 5px;
-	box-shadow: none;
-	border-style: solid;
-	border-width: 1px;
-	float: right;
-
-}
-
-.rownumber
-{
-	font-weight: normal;
-	color: gray;
-}
-
-
-
-table
-{
-	width: 300px;
-	border-spacing: 3px;
-	border-collapse:collapse;
-	border: 1px solid #DCDCDC;
-}
-
-table th 
-{
-	text-align: left; 
-
-
-}
-
-table td, table th
-{
-	padding: 15px;
-	border-bottom: 1px solid #DCDCDC;
-}
-
-footer
-{
-    text-align: right;
-    word-spacing: 5px;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    text-transform: uppercase;
-    font-size: 14px;
-    clear: both;
-    width: 1120px;
-}
-.email
-{
-	font-weight: bold;
-	color: #c1ffc1;
-}
-
-.mailto
-{
-	color: #b6c1ff;
-}
-
-{
-	text-decoration: none;
-	color: gray;
-}
-
-
