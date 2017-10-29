@@ -35,45 +35,14 @@ public class TicTacToe {
 
         int[] posTuple = convertPos(pos);
 
-        if (setBoardPos(posTuple[0], posTuple[1])) {
-
-            if (isX) {
-
-                isX = false;
-
-                return "X";
-
-            } else {
-
-                isX = true;
-
-                return "O";
-            }
-        }
-
-        return "Failed to set move!";
-    }
-
-    private boolean setBoardPos(int i, int j) {
-
-        if (!movesAvailable() && validMove(i, j)) {
-
-            return false;
-        }
-
-        if(isX) {
-
-            playerX.setBoard(i, j);
-            moves++;
-            
-            return true;
-
+        if (isX && setBoardPos(posTuple[0], posTuple[1], playerX)) {
+            isX = false;
+            return "X";
+        } else if (!isX && setBoardPos(posTuple[0], posTuple[1], playerO)) {
+            isX = true;
+            return "O";
         } else {
-
-            playerO.setBoard(i, j);
-            moves++;            
-
-            return true;
+            return "Failed to set move!";
         }
     }
 
@@ -103,11 +72,8 @@ public class TicTacToe {
         return moves < 9;
     }
 
-    public boolean checkState(Player player){
-        if (moves < 5) {
-            return false;
-        }
-        return checkWin(player.getBoard());
+    public boolean checkState(Player player) {
+        return moves >= 5 && checkWin(player.getBoard());
     }
 
     private boolean executeMove(int i, int j,Player player) {
@@ -122,15 +88,15 @@ public class TicTacToe {
 
     public String checkStatus() {
 
-        if (checkRowsAndColumns(playerX.getBoard()) || checkDiagonal(playerX.getBoard())) {
+        if (checkWin(playerX.getBoard())) {
 
             return "x";
 
-        } else if (checkRowsAndColumns(playerO.getBoard()) || checkDiagonal(playerO.getBoard())) {
+        } else if (checkWin(playerO.getBoard())) {
 
             return "o";
 
-        } else if (movesAvailable() == false) {
+        } else if (!movesAvailable()) {
 
             return "draw";
 
