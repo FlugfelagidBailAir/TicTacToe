@@ -1,5 +1,6 @@
 status: [![Build 
 Status](https://travis-ci.org/FlugfelagidBailAir/TicTacToe.svg?branch=master)](https://travis-ci.org/FlugfelagidBailAir/TicTacToe)
+[![Coverage Status](https://coveralls.io/repos/github/FlugfelagidBailAir/TicTacToe/badge.svg?branch=master)](https://coveralls.io/github/FlugfelagidBailAir/TicTacToe?branch=master)
 
 # TicTacToe
 Late fall semester project for HUGB3003
