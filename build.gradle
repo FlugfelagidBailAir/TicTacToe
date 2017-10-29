@@ -21,6 +21,7 @@ repositories {
 }
 task stage (dependsOn: installDist){
 
+    dependsOn build
 }
 //create a single Jar with all dependencies
 task toJar(type: Jar) {
