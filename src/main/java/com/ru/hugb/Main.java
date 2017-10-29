@@ -27,6 +27,19 @@ public class Main {
     	}
 	}
 
+	//Retrive Heroku port
+    static int getHerokuAssignedPort() {
+
+        ProcessBuilder processBuilder = new ProcessBuilder();
+
+        if (processBuilder.environment().get("PORT") != null) {
+
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+
+        return 4567;
+    }
+
 	public int newGame(String playerX, String playerO) {
 
 		if (availableIds.isEmpty()) {
@@ -92,8 +105,8 @@ public class Main {
     public static void main(String[] args) {
 
     	Main gameServer = new Main();
-
     	staticFileLocation("/public");
+    	port(getHerokuAssignedPort());
 
     	post("/start/:playerOne/:playerTwo", (req, res) -> {
 
