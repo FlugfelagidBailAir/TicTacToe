@@ -25,14 +25,27 @@ public class Player implements Serializable {
         }
     }
 
+    /**
+     * @return a 2d boolean array
+     */
     public boolean[][] getBoard(){
         return board;
     }
 
+    /**
+     * @param i
+     * @param j
+     * @return boolean value stored in at index i,j
+     */
     public boolean getBoardPos(int i, int j){
         return board[i][j];
     }
 
+    /**
+     * set the index in board to true
+     * @param i, row of board
+     * @param j, column of board
+     */
     public void setBoard(int i, int j){
         board[i][j] = true;
     }
