@@ -44,6 +44,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile 'com.sparkjava:spark-core:2.6.0'
     compile 'org.slf4j:slf4j-simple:1.7.9'
+    compile group: 'org.json', name: 'json', version: '20141113'
 
     //Selenium
     testCompile 'org.testng:testng:6.10'

@@ -11,16 +11,18 @@ $(document).ready(function() {
     });
   }
 
-  $("#start").click(function(e){
+  $("#start").on("submit", function(e){
 
     if ("gameId" in window) {
 
       quitGame();
     }
 
+    var formData = $("#start").serializeArray();
+
     $.ajax({
-      url: "/start/",
-      type: "PUT",
+      url: "/start/" + formData[0].value + "/" + formData[1].value,
+      type: "POST",
       success: function(result) {
 
         gameId = result;

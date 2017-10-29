@@ -13,9 +13,9 @@ public class MainTest {
 
 		Main main = new Main();
 
-		assertEquals(0, main.newGame());
-		assertEquals(1, main.newGame());
-		assertEquals(2, main.newGame());
+		assertEquals(0, main.newGame("PlayerX", "PlayerO"));
+		assertEquals(1, main.newGame("PlayerX", "PlayerO"));
+		assertEquals(2, main.newGame("PlayerX", "PlayerO"));
 	}
 
 	@Test
@@ -23,9 +23,9 @@ public class MainTest {
 
 		Main main = new Main();
 
-		assertEquals(0, main.newGame());
-		assertEquals(1, main.newGame());
-		assertEquals(2, main.newGame());
+		assertEquals(0, main.newGame("PlayerX", "PlayerO"));
+		assertEquals(1, main.newGame("PlayerX", "PlayerO"));
+		assertEquals(2, main.newGame("PlayerX", "PlayerO"));
 		assertEquals(3, main.getNumberOfInstances());
 		main.quitGame("0");
 		main.quitGame("1");

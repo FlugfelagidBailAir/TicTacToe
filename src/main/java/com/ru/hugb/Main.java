@@ -6,6 +6,8 @@ import spark.Response;
 import spark.Route;
 import java.util.Deque;
 import java.util.ArrayDeque;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Main {
 
@@ -25,7 +27,7 @@ public class Main {
     	}
 	}
 
-	public int newGame() {
+	public int newGame(String playerX, String playerO) {
 
 		if (availableIds.isEmpty()) {
 
@@ -33,7 +35,9 @@ public class Main {
 		}
 
 		int id = availableIds.remove();
-		games[id] = new TicTacToe();
+		Player O = new Player(playerO);
+		Player X = new Player(playerX);
+		games[id] = new TicTacToe(X, O);
 		numberOfInstances++;
 
 		return id;	
@@ -55,14 +59,14 @@ public class Main {
 
 	public String setPositionAt(String id, String pos) {
 
-        String turn = games[Integer.parseInt(id)].setPosition(pos);
+        String turn = games[Integer.parseInt(id)].setPosition(Integer.parseInt(pos));
 
 		return turn;
 	}
 
 	public boolean getPositionAt(String id, String pos) {
 
-    	return games[Integer.parseInt(id)].getPosition(pos); 		
+    	return games[Integer.parseInt(id)].getPosition(Integer.parseInt(pos)); 		
 	}
 
 	public String checkStatusAt(String id) {
@@ -91,9 +95,12 @@ public class Main {
 
     	staticFileLocation("/public");
 
-    	put("/start/", (req, res) -> {
+    	post("/start/:playerOne/:playerTwo", (req, res) -> {
 
-    		return gameServer.newGame();
+    		String playerOne = req.params("playerOne");
+    		String playerTwo = req.params("playerTwo");
+
+    		return gameServer.newGame(playerOne, playerTwo);
     	});
 
     	put("/stop/:id", (req, res) -> {
