@@ -83,7 +83,7 @@ public class Main {
 			newGames[i] = games[i];
 		}
 
-		for (int i = this.games.length - 1; i < newGames.length; i++) {
+		for (int i = this.games.length; i < newGames.length; i++) {
 
 			availableIds.add(i);
 		}

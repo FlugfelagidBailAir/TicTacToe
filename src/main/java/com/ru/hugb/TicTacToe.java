@@ -128,7 +128,7 @@ public class TicTacToe {
 
         } else if (checkRowsAndColumns(playerO.getBoard()) || checkDiagonal(playerO.getBoard())) {
 
-            return "O";
+            return "o";
 
         } else if (movesAvailable() == false) {
 

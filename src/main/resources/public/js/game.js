@@ -67,7 +67,7 @@ $(document).ready(function() {
                     $("#game").toggleClass("win").text("Winner is X!");
                     quitGame();
 
-                  } else if (result == "O") {
+                  } else if (result == "o") {
 
                     $("#game").addClass("win").text("Winner is O!");
                     quitGame();
