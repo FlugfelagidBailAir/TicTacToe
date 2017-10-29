@@ -5,6 +5,9 @@ The following manual gives you both information about the software needed to bui
 * Java Development Kit 8+
 * A tool to run shell scripts (e.g. git bash on Windows, built-in on Linux and macOS)
 
+## Other dependencies
+* Access to the github repository
+
 ## How to build the project on a fresh machine
 1. Clone the repository
 	1. Open a terminal
