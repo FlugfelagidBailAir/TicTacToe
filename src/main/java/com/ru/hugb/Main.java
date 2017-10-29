@@ -14,12 +14,15 @@ public class Main {
 	private TicTacToe [] games;
 	private Deque<Integer> availableIds;
 	private int numberOfInstances;
+	private Scoreboard scoreboard;
 
 	public Main() {
 
 		games = new TicTacToe[100];
 		availableIds = new ArrayDeque<Integer>();
 		numberOfInstances = 0;
+		scoreboard = new Scoreboard();
+        scoreboard.readFile();
 
     	for (int i = 0; i < games.length; i++) {
 
@@ -84,7 +87,38 @@ public class Main {
 
 	public String checkStatusAt(String id) {
 
-        return games[Integer.parseInt(id)].checkStatus(); 
+		int ID = Integer.parseInt(id);
+		String status = games[ID].checkStatus();
+
+		if (status == "x" || status == "o" || status == "draw") {
+
+			scoreboard.addResult(games[ID]);
+		}
+
+        return status; 
+	}
+
+	public JSONArray topFiveToJSON() {
+
+		Player [] players = scoreboard.getTopFive();
+		JSONArray jsonArray = new JSONArray();
+
+		for (Player player : players) {
+
+			if (player == null) {
+
+				continue;
+			}
+
+			JSONObject playerObject = new JSONObject();
+			playerObject.put("name", player.getName());
+			playerObject.put("wins", player.getNumberOfWins());
+			playerObject.put("losses", player.getNumberOfLosses());
+
+			jsonArray.put(playerObject);
+		}
+
+		return jsonArray;
 	}
 
 	public void resize() {
@@ -136,6 +170,13 @@ public class Main {
         get("/check/:id", (req, res) -> {
 
         	return gameServer.checkStatusAt(req.params("id")); 
+        });
+
+        get("/scoreboard/", (req, res) -> {
+
+        	JSONArray jsonArray = gameServer.topFiveToJSON();
+
+        	return jsonArray;
         });
 	}
 }
