@@ -1,5 +1,8 @@
 # Development manual
-The following manual gives you both information about the software needed to build the program Tic Tac Toe as well as step-by-step instructions to do so.
+
+The purpose of this document is to provide a programmer with information how to implement the project and run it in his environment. Development Manual guides new programmers through the project and ensures satisfying programming experience. 
+
+Here is the information about the software needed to build the program Tic Tac Toe. 
 ## Software requirements
 * Git
 * Java Development Kit 8+
@@ -8,6 +11,7 @@ The following manual gives you both information about the software needed to bui
 ## Other dependencies
 * Access to the github repository
 
+Here is a step-by-step instructions to build the project on a fresh machine. 
 ## How to build the project on a fresh machine
 1. Clone the repository
 	1. Open a terminal
@@ -16,8 +20,5 @@ The following manual gives you both information about the software needed to bui
 	1. Open the projects directory in a terminal.
 	1. Write "./gradlew build" or "gradle build"
 
-ToDo:
-what is needed and how to get the project to
-build on a fresh machine, Source control client and access to source
-control Build environment, Other necessary dependencies for
-development.
+Thank you and we hope you will enjoy programming with us. 
+

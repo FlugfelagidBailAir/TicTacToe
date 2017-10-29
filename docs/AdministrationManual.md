@@ -1,6 +1,8 @@
 
 # Administration manual
-The following manual gives you both information about the software needed to download and play the game Tic Tac Toe as well as step-by-step instructions to do so.
+The purpose of this document is to provide an administrator with information how to implement the project and run it in his environment. Administrator Manual guides administrators through the project and ensures satisfying experience. 
+
+Here is information about the software needed to download and play the game Tic Tac Toe.
 
 ## Software requirements
 * Java 8+
@@ -8,6 +10,7 @@ The following manual gives you both information about the software needed to dow
 * Git
 * Any web browser
 
+Here is step by step guide on how to run and maintain the project on a fresh machine. 
 ## How to deploy, run and maintain on a fresh machine
 1. To clone the repository, enter "git clone git@github.com:FlugfelagidBailAir/TicTacToe.git"
 1. To run the web application locally.
@@ -18,8 +21,4 @@ The following manual gives you both information about the software needed to dow
 1. To deploy the application, simply push any changes onto the master branch of the github repository 
 1. The web application is hosted on https://frozen-springs-99760.herokuapp.com/.
 
-ToDo:
-How to set it up and get it to run, also on a
-fresh machine. How to install and run the program on clients machine
-(in case of simple desktop program). How to deploy, run and maintain
-in case of client/server or web application.
+Thank you and we hope you will enjoy the experience. 
