@@ -6,5 +6,29 @@ deploy:
   app: frozen-springs-99760
   on:
     repo: FlugfelagidBailAir/TicTacToe
+
+dist: trusty
+addons:
+  chrome: stable
+
 before_install:
-- chmod +x gradlew
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+
+before_script:
+  - "wget http://chromedriver.storage.googleapis.com/2.25/chromedriver_linux64.zip"
+  - "unzip chromedriver_linux64.zip"
+  - "ls -al"
+  - "chmod 777 bin/xvfb"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+script:
+  - ./gradlew clean
+  - ./gradlew check
+  - ./gradlew build
+  - ./gradlew seleniumXvfb
+
+after_failure:
+    - "cat /home/travis/build/FlugfelagidBailAir/TicTacToe/build/reports/tests/seleniumXvfb/index.html"
