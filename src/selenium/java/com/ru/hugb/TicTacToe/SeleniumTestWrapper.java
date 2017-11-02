@@ -18,12 +18,11 @@ public abstract class SeleniumTestWrapper {
   @BeforeClass
   public static void openBrowser() {
     //System.setProperty("webdriver.chrome.driver", "/home/travis/build/FlugfelagidBailAir/TicTacToe/chromedriver");
-    //baseUrl = "https://frozen-springs-99760.herokuapp.com/";
     driver = new ChromeDriver();
 
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-    baseUrl = "http://localhost:4567";
+    baseUrl = "https://frozen-springs-99760.herokuapp.com/";
 
     driver.get(baseUrl);
   }
