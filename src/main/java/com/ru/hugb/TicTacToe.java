@@ -17,7 +17,7 @@ public class TicTacToe {
         moves = 0;
         isX = true;
     }
-
+    //useless comment for presentation
     public Player getPlayerX() {
         return playerX;
     }
